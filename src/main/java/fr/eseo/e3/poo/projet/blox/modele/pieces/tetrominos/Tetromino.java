@@ -29,6 +29,7 @@ public abstract class Tetromino implements Piece {
         this.puits = puits;
     }
 
+    @Override
     public void setPosition(int abscisse, int ordonnee) {
         for (Element element : elements) {
             Coordonnees coord = element.getCoordonnees();
