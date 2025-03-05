@@ -9,4 +9,3 @@ public interface Piece {
     Puits getPuits();
     void setPuits(Puits puits);
 }
-

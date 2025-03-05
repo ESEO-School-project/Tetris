@@ -11,13 +11,13 @@ public class ITetromino extends Tetromino {
 
     @Override
     public void setElements(Coordonnees coordonnees, Couleur couleur) {
-        Coordonnees coordBot = new Coordonnees(coordonnees.getAbscisse(), coordonnees.getOrdonnee() + 1);
-        Coordonnees coordMid = new Coordonnees(coordonnees.getAbscisse(), coordonnees.getOrdonnee() - 1);
-        Coordonnees coordTop = new Coordonnees(coordonnees.getAbscisse(), coordonnees.getOrdonnee() - 2);
+        Coordonnees coordBot = new Coordonnees(coordonnees.getAbscisse(), coordonnees.getOrdonnee() - 1);
+        Coordonnees coordMid = new Coordonnees(coordonnees.getAbscisse(), coordonnees.getOrdonnee() + 1);
+        Coordonnees coordTop = new Coordonnees(coordonnees.getAbscisse(), coordonnees.getOrdonnee() + 2);
 
         elements[0] = new Element(coordonnees, couleur);
         elements[1] = new Element(coordBot, couleur);
-        elements[3] = new Element(coordMid, couleur);
-        elements[2] = new Element(coordTop, couleur);
+        elements[2] = new Element(coordMid, couleur);
+        elements[3] = new Element(coordTop, couleur);
     }
 }
