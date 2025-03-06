@@ -20,4 +20,8 @@ public class OTetromino extends Tetromino {
         elements[2] = new Element(coordRight, couleur);
         elements[3] = new Element(coordTopRight, couleur);
     }
+
+    public void tourner(boolean sensHoraire) {
+        
+    }
 }

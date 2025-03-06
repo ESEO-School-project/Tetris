@@ -8,5 +8,7 @@ public interface Piece {
     void setPosition(int abscisse, int ordonnee);
     Puits getPuits();
     void setPuits(Puits puits);
+    void deplacerDe(int deltaX, int deltaY);
+    void tourner(boolean sensHoraire);
 }
 

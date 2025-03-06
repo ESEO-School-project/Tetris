@@ -1,27 +1,34 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
 /**
  * Le plateau du jeu
  */
 public class Puits {
-    private static final int LARGEUR_PAR_DEFAUT = 10;
-    private static final int PROFONDEUR_PAR_DEFAUT = 15;
+    public static final int LARGEUR_PAR_DEFAUT = 10;
+    public static final int PROFONDEUR_PAR_DEFAUT = 20;
+    public static final String MODIFICATION_PIECE_ACTUELLE = "MODIFICATION_PIECE_ACTUELLE";
+    public static final String MODIFICATION_PIECE_SUIVANTE = "MODIFICATION_PIECE_SUIVANTE";
 
     private int largeur;
     private int profondeur;
     private Piece pieceActuelle = null;
     private Piece pieceSuivante = null;
 
-    public Puits() {
-        this.largeur = LARGEUR_PAR_DEFAUT;
-        this.profondeur = PROFONDEUR_PAR_DEFAUT;
-    }
+    private PropertyChangeSupport pcs;
 
     public Puits(int largeur, int profondeur) {
+        pcs = new PropertyChangeSupport(this);
         this.largeur = largeur;
         this.profondeur = profondeur;
+    }
+
+    public Puits() {
+        this(LARGEUR_PAR_DEFAUT, PROFONDEUR_PAR_DEFAUT);
     }
 
     public Piece getPieceActuelle() {
@@ -46,9 +53,11 @@ public class Puits {
             return;
         }
 
+        pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE, pieceActuelle, pieceSuivante);
         pieceActuelle = pieceSuivante;
-        pieceActuelle.setPosition((int) largeur/2, -4);
+        pieceActuelle.setPosition((int) largeur/2, (int) largeur/2);
         pieceActuelle.setPuits(this);
+        pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE, pieceSuivante, piece);
         pieceSuivante = piece;
     }
 
@@ -65,5 +74,13 @@ public class Puits {
         return "Puits : Dimension " + largeur + " x " + profondeur
                + "\nPiece Actuelle : " + (pieceActuelle == null ? "<aucune>" : pieceActuelle.toString())
                + "\nPiece Suivante : " + pieceSuivante.toString();
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
     }
 }

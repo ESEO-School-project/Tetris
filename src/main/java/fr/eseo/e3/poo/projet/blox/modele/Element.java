@@ -56,4 +56,8 @@ public class Element {
     public int hashCode() {
         return coordonnees.hashCode() + couleur.hashCode();
     }
+
+    public void deplacerDe(int deltaX, int deltaY) {
+        
+    }
 }

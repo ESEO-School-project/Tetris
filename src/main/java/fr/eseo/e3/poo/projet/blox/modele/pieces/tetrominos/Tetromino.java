@@ -36,6 +36,10 @@ public abstract class Tetromino implements Piece {
         }
     }
 
+    public void deplacerDe(int deltaX, int deltaY) {
+        setPosition(deltaX, deltaY);
+    }
+
     @Override
     public String toString() {
         String string = getClass().getSimpleName() + " :\n";

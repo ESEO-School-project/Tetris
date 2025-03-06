@@ -1,9 +1,9 @@
 package fr.eseo.e3.poo.projet.blox.modele.pieces;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +14,15 @@ import fr.eseo.e3.poo.projet.blox.modele.pieces.tetrominos.OTetromino;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.tetrominos.Tetromino;
 
 public class UsineDePieceTest {
+
+    @Test
+    public void testConstructor() throws NoSuchMethodException, SecurityException {
+        Class<?> clazz = UsineDePiece.class;
+        Constructor<?> constructor = clazz.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        assertThrows(InvocationTargetException.class, () -> constructor.newInstance());
+    }
+
     @Test
     public void testGenererTetromino() {
         // Aleatoire complet
@@ -38,5 +47,9 @@ public class UsineDePieceTest {
         assertInstanceOf(OTetromino.class, UsineDePiece.genererTetromino());
         // Renvoie une erreur si dans UsineDePiece.tetrominos.length > 2
         assertInstanceOf(ITetromino.class, UsineDePiece.genererTetromino());
+
+        // Tetrominos inexistant
+        UsineDePiece.tetrominos = new String[] {"dummy"};
+        assertNull(UsineDePiece.genererTetromino());
     }
 }

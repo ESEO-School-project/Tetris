@@ -20,4 +20,6 @@ public class ITetromino extends Tetromino {
         elements[3] = new Element(coordMid, couleur);
         elements[2] = new Element(coordTop, couleur);
     }
+
+    public void tourner(boolean sensHoraire) {}
 }
