@@ -1,5 +1,6 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -10,6 +11,16 @@ import fr.eseo.e3.poo.projet.blox.modele.pieces.tetrominos.ITetromino;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.tetrominos.OTetromino;
 
 public class PuitsTest {
+
+    @Test
+    public void testConstructor() {
+        Puits p = assertDoesNotThrow(() -> new Puits());
+        assertEquals(10, p.getLargeur());
+        assertEquals(15, p.getProfondeur());
+
+        assertDoesNotThrow(() -> new Puits(1, 2));
+    }
+
     @Test
     public void testSetPieceSuivante() {
         Puits puits = new Puits();
